@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        GIT_REPO = 'https://github.com/tu-usuario/tu-repositorio.git'
+        GIT_REPO = 'https://github.com/Linzpe/Pipeline_Jenkins.git'
         BRANCH = 'main'
         CREDENTIALS_ID = 'github-credentials-id' // El ID de las credenciales configuradas en Jenkins
     }
