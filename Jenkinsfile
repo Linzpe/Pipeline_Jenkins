@@ -16,7 +16,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-                    echo "Fichero de test" > ${JENKINS_HOME}/test_file.txt
+                    python Test.py
                 '''
             }
         }
