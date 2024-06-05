@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    environment {
+        JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
+        PATH = "${JAVA_HOME}/bin:${env.PATH}"
+    }
     
     stages {
         // Primer paso: checkout. Se descarga el repositorio completo en jenkins
