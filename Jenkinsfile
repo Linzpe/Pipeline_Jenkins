@@ -24,8 +24,12 @@ pipeline {
         // Cuarto paso: Deploy. Despliega en un directorio local la aplicación generada
         stage('Deploy') {
             steps {
-                sh 'mkdir -p /var/jenkins_home/aplicacion_WEBGOAT'
-                sh 'cp target/webgoat-*.war /var/jenkins_home/aplicacion_WEBGOAT'
+                script {
+                    def deployDir = '/var/jenkins_home/aplicacion_WEBGOAT'
+                    sh "mkdir -p ${deployDir}"
+                    sh "cp target/webgoat-server-*.jar ${deployDir}"
+                    sh "nohup java -jar ${deployDir}/webgoat-server-*.jar > ${deployDir}/webgoat.log 2>&1 &"
+                }
             }
         }
     }
