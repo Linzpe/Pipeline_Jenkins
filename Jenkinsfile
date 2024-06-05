@@ -5,7 +5,7 @@ pipeline {
         // Primer paso: checkout. Se descarga el repositorio completo en jenkins
         stage('Checkout') {
             steps {
-                git 'https://github.com/WebGoat/WebGoat.git'
+                git branch: 'main', git 'https://github.com/WebGoat/WebGoat.git'
             }
         }
         // Segundo paso: Build. En el archivo pom.xml está la lista de archivos necesarios para crear el JAR o WAR.
