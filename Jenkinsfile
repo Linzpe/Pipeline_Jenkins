@@ -12,7 +12,16 @@ pipeline {
         // Se limpia el directorio target y se compilan los archivos del Pom.xml
         stage('Build') {
             steps {
-                sh 'mvn clean install -X'
+                sh 'mvn clean install'
+            }
+        }
+        // En esta etapa se cambian las versiones 21 por 17.
+        stage('Update POM') {
+            steps {
+                // Usa 'sed' para cambiar todas las ocurrencias de '21' por '17' en el archivo pom.xml
+                sh 'sed -i "s/<java.version>21<\\/java.version>/<java.version>17<\\/java.version>/g" pom.xml'
+                sh 'sed -i "s/<maven.compiler.source>21<\\/maven.compiler.source>/<maven.compiler.source>17<\\/maven.compiler.source>/g" pom.xml'
+                sh 'sed -i "s/<maven.compiler.target>21<\\/maven.compiler.target>/<maven.compiler.target>17<\\/maven.compiler.target>/g" pom.xml'
             }
         }
         // Tercer paso: Package. Empaqueta los archivos mediante "mvn package"
