@@ -12,7 +12,7 @@ pipeline {
         // Se limpia el directorio target y se compilan los archivos del Pom.xml
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                sh 'mvn clean install -X'
             }
         }
         // Tercer paso: Package. Empaqueta los archivos mediante "mvn package"
