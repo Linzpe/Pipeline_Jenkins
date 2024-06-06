@@ -8,13 +8,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/WebGoat/WebGoat.git'
             }
         }
-        // Segundo paso: Build. En el archivo pom.xml está la lista de archivos necesarios para crear el JAR o WAR.
-        // Se limpia el directorio target y se compilan los archivos del Pom.xml
-        stage('Build') {
-            steps {
-                sh 'mvn clean install'
-            }
-        }
+        
         // En esta etapa se cambian las versiones 21 por 17.
         stage('Update POM') {
             steps {
@@ -24,6 +18,15 @@ pipeline {
                 sh 'sed -i "s/<maven.compiler.target>21<\\/maven.compiler.target>/<maven.compiler.target>17<\\/maven.compiler.target>/g" pom.xml'
             }
         }
+        
+        // Segundo paso: Build. En el archivo pom.xml está la lista de archivos necesarios para crear el JAR o WAR.
+        // Se limpia el directorio target y se compilan los archivos del Pom.xml
+        stage('Build') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+        
         // Tercer paso: Package. Empaqueta los archivos mediante "mvn package"
         stage('Package') {
             steps {
