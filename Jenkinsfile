@@ -39,7 +39,7 @@ pipeline {
                 script {
                     def deployDir = '/var/jenkins_home/aplicacion_WEBGOAT'
                     sh "mkdir -p ${deployDir}"
-                    sh "cp target/webgoat-server-*.jar ${deployDir}"
+                    sh "cp target/webgoat-2024.2-SNAPSHOT.jar ${deployDir}"
                     sh "nohup java -jar ${deployDir}/webgoat-server-*.jar > ${deployDir}/webgoat.log 2>&1 &"
                 }
             }
